@@ -111,6 +111,8 @@ export default function App() {
     }
   };
 
+   if (cargando) return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Cargando el mercado...</h2>;
+
   return (
     <div className='Cuerpo-Completo'>
       <h1>Mercado tu pagas</h1>
