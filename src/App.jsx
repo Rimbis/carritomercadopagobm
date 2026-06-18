@@ -8,10 +8,10 @@ import './App.css';
 /*COMENTARIO, leelo:
 Seguramente y miras esto en clases, ni fe.
 Pero lo principal del codigo en logica, tenemos. 
-Puse algunos style pero la mayor parte quiero que la hagar vos y luego lo modificamos.
+Puse algunos style pero la mayor parte quiero que la hagas vos y luego lo modificamos.
 Use varios elementos que use en la API anterior asi que tenemos todas esas bonitas constantes de abajo.
 Hay que sacar componentes... todo tuyo.
-Y la API es bastante simple asi que no hay muchos productos, solo que si tiene datos. */
+Y la API es bastante simple asi que no hay muchos productos, solo que si tiene datos... considerablemente. */
 
 
 
