@@ -1,11 +1,20 @@
-.Container {
-  border: 1px solid #eee;
-  border-radius: 12px;
-  background: #fff;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: row; 
-  align-items: center; 
-  gap: 15px;
+.tema-claro {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.tema-oscuro {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+/* Si querés que los componentes hijos también cambien */
+.tema-oscuro .Contenedor-Chiquito {
+    background-color: #16213e;
+    border-color: #444;
+}
+
+.tema-oscuro button {
+    background-color: #444;
+    color: #fff;
 }
