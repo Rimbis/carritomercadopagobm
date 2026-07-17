@@ -12,7 +12,7 @@ export default function useBackendAPI() {
         try {
             console.log("Enviando al backend...");
 
-            const res = await axios.post("https://backend-produccion.up.railway.app/carrito", {
+            const res = await axios.post("carritomercadopagobm-production.up.railway.app", {
                 items: parseCart,
                 user: user
             });
