@@ -64,11 +64,7 @@ def post_carrito(carrito: Carrito):
 },
 "auto_return": "approved"
 }
-    import pprint
-
-    
-    pprint.pprint(preference_data)
-
+   
 
     preference_response = sdk.preference().create(preference_data)
     preference = preference_response["response"]
