@@ -23,7 +23,28 @@ export function useCarrito() {
                 cantidad: 1
             }]);
         }
+  
     };
+          const eliminarDelCarrito = (id) => {
+
+    const producto = carrito.find(item => item.id === id);
+
+    if (!producto) return;
+
+    if (producto.cantidad > 1) {
+        setCarrito(
+            carrito.map(item =>
+                item.id === id
+                    ? { ...item, cantidad: item.cantidad - 1 }
+                    : item
+            )
+        );
+    } else {
+        setCarrito(
+            carrito.filter(item => item.id !== id)
+        );
+    }
+};
 
     const existe = (producto) => carrito.some(item => item.id === producto.id);
 
@@ -31,6 +52,7 @@ export function useCarrito() {
         carrito,
         setCarrito,
         agregarAlCarrito,
+        eliminarDelCarrito,
         existe        // <= función que devuelve true/false
     };
 }

@@ -3,6 +3,7 @@ import './App.css';
 import { useProductos } from './hooks/fetchData';
 import { useCarrito } from './hooks/carrito';
 import { useTema } from './hooks/useTema';
+import useBackendAPI from './hooks/backend'
 import Productos from './componentes/productos';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -35,7 +36,8 @@ export default function App() {
     toggleFavorito
   } = useProductos();
 
-  const { agregarAlCarrito, existe, carrito } = useCarrito();
+  const { agregarAlCarrito, existe, carrito, eliminarDelCarrito } = useCarrito();
+   const { sendToBackend } = useBackendAPI()
 
   if (cargando) return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Cargando el mercado...</h2>;
 
@@ -99,11 +101,16 @@ export default function App() {
                     <h4>{item.titulo}</h4>
                     <p>Cantidad: {item.cantidad} x ${item.precio}</p>
                     <p>Subtotal: ${(item.cantidad * item.precio).toFixed(2)}</p>
+                        <button onClick={() => eliminarDelCarrito(item.id)}>Eliminar </button>
                   </div>
                 ))}
                 <h3>Total: ${carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0).toFixed(2)}</h3>
+
+                
               </div>
+              
             )}
+             <button  onClick={() => sendToBackend(carrito, "Test")}>Pagar</button>  
           </div>
         </div>
 

@@ -7,7 +7,17 @@ from dotenv import load_dotenv
 import os
 
 #Traemos del .env la credencial
-TOKEN_PAGO= os.getenv("MERCADO_TOKEN")
+load_dotenv ()
+
+TOKEN_PAGO= os.getenv("TOKEN_PAGO")
+
+class Item(BaseModel):
+    title: str
+    quantity: int
+    unit_price: float
+
+class Carrito(BaseModel):
+    items: list[Item]
 
 
 app = FastAPI()
@@ -29,30 +39,49 @@ app.add_middleware(
 
 
 # Agrega credenciales
-sdk = mercadopago.SDK("TOKEN_PAGO")
+sdk = mercadopago.SDK(TOKEN_PAGO)
 
 @app.get("/")
 def root ():
     return "andando"
 
 
-@app.post ("/carrito")
-def post_productos (carrito: Carrito)
-# Crea un ítem en la preferencia
-preference_data = {
+@app.post("/carrito")
+def post_carrito(carrito: Carrito):
+
+    preference_data = {
     "items": [
         {
-            "title": "Mi producto",
-            "quantity": 1,
-            "unit_price": 75.76,
+            "title": item.title,
+            "quantity": item.quantity,
+            "unit_price": item.unit_price,
         }
-    ]
+        for item in carrito.items
+        ],"back_urls": {
+            "success": "https://www.google.com",
+            "failure": "https://www.google.com",
+            "pending": "https://www.google.com"
+},
+"auto_return": "approved"
 }
+    import pprint
 
-preference_response = sdk.preference().create(preference_data)
-preference = preference_response["response"]
-return {
+    
+    pprint.pprint(preference_data)
+
+
+    preference_response = sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+
+    print("STATUS:", preference_response["status"])
+    print("RESPONSE:", preference_response["response"])
+    return {
         "id": preference["id"],
         "init_point": preference["init_point"],
         "sandbox_init_point": preference["sandbox_init_point"]
+        
     }
+
+
+
+    
